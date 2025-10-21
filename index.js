@@ -34,3 +34,14 @@ const playRound = (humanChoice, computerChoice) => {
     return `You loose! ${computerChoice} beats ${humanChoice}.`;
   }
 };
+
+const playGame = () => {
+  for (let i = 0; i < 5; i++) {
+    const humanChoice = getHumanChoice();
+    const computerChoice = getComputerChoice();
+    const results = playRound(humanChoice, computerChoice);
+
+    alert(results)
+    console.log(results)
+  }
+};
