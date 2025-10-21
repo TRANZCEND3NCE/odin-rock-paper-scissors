@@ -19,6 +19,18 @@ const getHumanChoice = () => {
   }
 };
 
-const playRound = () => {
-  
-}
+const playRound = (humanChoice, computerChoice) => {
+  if (
+    humanChoice === "rock" && computerChoice === "scissors" ||
+    humanChoice === "paper" && computerChoice === "rock" ||
+    humanChoice === "scissors" && computerChoice === "paper"
+  ) {
+    humanChoice++
+    return `You win! ${humanChoice} beats ${computerChoice}.`;
+  } else if (humanChoice === computerChoice) {
+    return `It's a tie! You both chose ${humanChoice}`
+  } else {
+    computerScore++
+    return `You loose! ${computerChoice} beats ${humanChoice}.`;
+  }
+};
