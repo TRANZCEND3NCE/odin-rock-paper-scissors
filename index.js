@@ -2,21 +2,15 @@ let choices = ["rock", "paper", "scissors"];
 
 let humanScore = 0;
 let computerScore = 0;
+let roundsPlayed = 0;
+
+const humanScoreResult = document.getElementById("humanScore");
+const computerScoreResult = document.getElementById("computerScore");
+const result = document.getElementById("result");
 
 const getComputerChoice = () => {
   let randomChoice = Math.floor(Math.random() * choices.length);
   return choices[randomChoice];
-};
-
-const getHumanChoice = () => {
-  let choice = prompt("Please choose rock, paper or scissors").toLowerCase();
-
-  if (choices.includes(choice)) {
-    return choice;
-  } else {
-    alert("Invalid choice. Please try again.");
-    return getHumanChoice();
-  }
 };
 
 const playRound = (humanChoice, computerChoice) => {
@@ -35,25 +29,35 @@ const playRound = (humanChoice, computerChoice) => {
   }
 };
 
-const playGame = () => {
-  for (let i = 0; i < 5; i++) {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    const results = playRound(humanChoice, computerChoice);
-
-    alert(results)
-    console.log(results)
-  }
-
-  // Final score message
+const endGameMessage = () => {
   if (humanScore > computerScore) {
-    alert(`🏆 You win the game! Final score: Human ${humanScore} - Computer ${computerScore}`);
+    return `🏆 You win the game! Final score: Human ${humanScore} - Computer ${computerScore}`;
   } else if (humanScore < computerScore) {
-    alert(`😵‍💫 You loose the game. Final score: Human ${humanScore} - Computer ${computerScore}`);
+    return `😵‍💫 You lose the game. Final score: Human ${humanScore} - Computer ${computerScore}`;
   } else {
-    alert(`🤝 It's a tie! Final score: Human ${humanScore} - Computer ${computerScore}`)
+    return `🤝 It's a tie! Final score: Human ${humanScore} - Computer ${computerScore}`
   }
 };
 
-// Start the game
-playGame();
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    if (roundsPlayed >= 5) return;
+
+    const humanChoice = button.dataset.choice;
+    const computerChoice = getComputerChoice();
+
+    const roundResult = playRound(humanChoice, computerChoice);
+    roundsPlayed++;
+
+    // Update Score Result
+    humanScoreResult.textContent = humanScore;
+    computerScoreResult.textContent = computerScore;
+
+    //Show Result
+    result.textContent = roundResult;
+
+    if (roundsPlayed === 5) {
+      result.textContent = endGameMessage();
+    }
+  });
+});
