@@ -3,6 +3,11 @@
   padding : 0;
 }
 
+h2 {
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -18,7 +23,9 @@ body {
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  width: 300px;
+  width: 400px;
+  height: 200px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.264);
 }
 
 .score-board {
@@ -41,6 +48,7 @@ body {
 
 .buttons {
   display: flex;
+  justify-content: space-between;
 }
 
 button:active {
@@ -48,6 +56,10 @@ button:active {
 }
 
 .buttons button:hover {
+  background: #777;
+}
+
+#restart:hover {
   background: #777;
 }
 

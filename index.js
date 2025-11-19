@@ -22,25 +22,26 @@ const playRound = (humanChoice, computerChoice) => {
     humanChoice === "scissors" && computerChoice === "paper"
   ) {
     humanScore++
-    return `You win! ${humanChoice} beats ${computerChoice}.`;
+    return `🏆 You win! ${humanChoice} beats ${computerChoice}.`;
   } else if (humanChoice === computerChoice) {
-    return `It's a tie! You both chose ${humanChoice}.`
+    return `🤝 It's a tie! You both chose ${humanChoice}.`
   } else {
     computerScore++
-    return `You lose! ${computerChoice} beats ${humanChoice}.`;
+    return `😵‍💫 You lose! ${computerChoice} beats ${humanChoice}.`;
   }
 };
 
-const endGameMessage = () => {
+const gameMessage = () => {
   if (humanScore > computerScore) {
-    return `🏆 You win the game! Final score: Human ${humanScore} - Computer ${computerScore}`;
+    return `🏆 You win the game! Final score: Human ${humanScore} | Computer ${computerScore}`;
   } else if (humanScore < computerScore) {
-    return `😵‍💫 You lose the game. Final score: Human ${humanScore} - Computer ${computerScore}`;
+    return `😵‍💫 You lose the game. Final score: Human ${humanScore} | Computer ${computerScore}`;
   } else {
-    return `🤝 It's a tie! Final score: Human ${humanScore} - Computer ${computerScore}`
+    return `🤝 It's a tie! Final score: Human ${humanScore} | Computer ${computerScore}`
   }
 };
 
+// Button logic for selecting rock, paper, or scissors
 document.querySelectorAll("button").forEach(button => {
   button.addEventListener("click", () => {
     if (roundsPlayed >= maxRounds) return;
@@ -59,7 +60,7 @@ document.querySelectorAll("button").forEach(button => {
     result.textContent = roundResult;
 
     if (roundsPlayed === maxRounds) {
-      result.textContent = endGameMessage();
+      result.textContent = gameMessage();
 
 
       document.querySelector(".buttons").style.display = "none";
@@ -76,7 +77,7 @@ restartBtn.addEventListener("click", () => {
 
   humanScoreResult.textContent = humanScore;
   computerScoreResult.textContent = computerScore;
-  result.textContent = "Your Move";
+  result.textContent = "Your Move 😁";
 
   document.querySelector(".buttons").style.display = "flex";
   restartBtn.style.display = "none";
