@@ -3,10 +3,12 @@ let choices = ["rock", "paper", "scissors"];
 let humanScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
+const maxRounds = 5;
 
 const humanScoreResult = document.getElementById("humanScore");
 const computerScoreResult = document.getElementById("computerScore");
 const result = document.getElementById("result");
+const restartBtn = document.getElementById("restart");
 
 const getComputerChoice = () => {
   let randomChoice = Math.floor(Math.random() * choices.length);
@@ -41,7 +43,7 @@ const endGameMessage = () => {
 
 document.querySelectorAll("button").forEach(button => {
   button.addEventListener("click", () => {
-    if (roundsPlayed >= 5) return;
+    if (roundsPlayed >= maxRounds) return;
 
     const humanChoice = button.dataset.choice;
     const computerChoice = getComputerChoice();
@@ -56,8 +58,26 @@ document.querySelectorAll("button").forEach(button => {
     //Show Result
     result.textContent = roundResult;
 
-    if (roundsPlayed === 5) {
+    if (roundsPlayed === maxRounds) {
       result.textContent = endGameMessage();
+
+
+      document.querySelector(".buttons").style.display = "none";
+      restartBtn.style.display = "inline-block";
     }
   });
+});
+
+// Restart game
+restartBtn.addEventListener("click", () => {
+  humanScore = 0;
+  computerScore = 0;
+  roundsPlayed = 0;
+
+  humanScoreResult.textContent = humanScore;
+  computerScoreResult.textContent = computerScore;
+  result.textContent = "Your Move";
+
+  document.querySelector(".buttons").style.display = "flex";
+  restartBtn.style.display = "none";
 });

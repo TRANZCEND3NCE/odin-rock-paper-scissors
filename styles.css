@@ -39,6 +39,10 @@ body {
   font-size: 16px;
 }
 
+.buttons {
+  display: flex;
+}
+
 button:active {
   transform: scale(0.95);
 }
@@ -50,4 +54,16 @@ button:active {
 .result-text {
   margin-top: 20px;
   font-size: 18px;
+}
+
+#restart {
+  margin: 10px;
+  padding: 10px 20px;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.264);
+  cursor: pointer;
+  font-size: 16px;
 }
